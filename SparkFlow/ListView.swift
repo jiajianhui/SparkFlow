@@ -32,10 +32,26 @@ struct ListView: View {
                 ForEach(lists) { item in
                     ListRowView(title: item.title ?? "",
                                 content: item.content ?? "",
-                                timeStamp: displayDate(item.timeStamp!)
+                                timeStamp: displayDate(item.timeStamp!),
+                                collected: item.collected
                     )
+                    .swipeActions {
+                        Button(role: .destructive) {
+                            viewContext.delete(item)
+                            try? viewContext.save()
+                        } label: {
+                            Text("删除")
+                        }
+                        
+                        Button {
+                            collectedEntity(entity: item)
+                        } label: {
+                            Text(item.collected ? "取消收藏" : "收藏")
+                        }
+                        .tint(.orange)
+
+                    }
                 }
-                .onDelete(perform: RemoveEntity(index:))
             }
             
             .navigationTitle("列表")
@@ -54,8 +70,12 @@ struct ListView: View {
     }
     
     //MARK: - CoreData函数
-    func RemoveEntity(index: IndexSet) {
-        index.map { lists[$0] }.forEach(viewContext.delete(_:))
+    func deleteEntity(entity: FetchedResults<Entity>.Element) {
+        viewContext.delete(entity)
+        try? viewContext.save()
+    }
+    func collectedEntity(entity: FetchedResults<Entity>.Element) {
+        entity.collected.toggle()
         try? viewContext.save()
     }
     

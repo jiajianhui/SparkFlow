@@ -82,6 +82,7 @@ struct AddSheetView: View {
         new.title = titleValue
         new.content = contentValue
         new.timeStamp = Date()
+        new.collected = false
         
         try? viewContext.save()
     }
