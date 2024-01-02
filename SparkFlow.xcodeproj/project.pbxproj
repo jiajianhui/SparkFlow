@@ -8,17 +8,25 @@
 
 /* Begin PBXBuildFile section */
 		62127B272B43E9AC008D2656 /* SparkFlowApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62127B262B43E9AC008D2656 /* SparkFlowApp.swift */; };
-		62127B292B43E9AC008D2656 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62127B282B43E9AC008D2656 /* ContentView.swift */; };
 		62127B2B2B43E9AC008D2656 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 62127B2A2B43E9AC008D2656 /* Assets.xcassets */; };
 		62127B2E2B43E9AC008D2656 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 62127B2D2B43E9AC008D2656 /* Preview Assets.xcassets */; };
+		62127B362B43E9EB008D2656 /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62127B352B43E9EB008D2656 /* ListView.swift */; };
+		62127B382B43EAD0008D2656 /* ListRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62127B372B43EAD0008D2656 /* ListRowView.swift */; };
+		62127B3A2B43EDCE008D2656 /* ListData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62127B392B43EDCE008D2656 /* ListData.swift */; };
+		62127B3D2B43F048008D2656 /* ListData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 62127B3B2B43F048008D2656 /* ListData.xcdatamodeld */; };
+		62127B422B43FD0C008D2656 /* AddSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62127B412B43FD0C008D2656 /* AddSheetView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		62127B232B43E9AC008D2656 /* SparkFlow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SparkFlow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		62127B262B43E9AC008D2656 /* SparkFlowApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SparkFlowApp.swift; sourceTree = "<group>"; };
-		62127B282B43E9AC008D2656 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		62127B2A2B43E9AC008D2656 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		62127B2D2B43E9AC008D2656 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		62127B352B43E9EB008D2656 /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
+		62127B372B43EAD0008D2656 /* ListRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListRowView.swift; sourceTree = "<group>"; };
+		62127B392B43EDCE008D2656 /* ListData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListData.swift; sourceTree = "<group>"; };
+		62127B3C2B43F048008D2656 /* ListData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ListData.xcdatamodel; sourceTree = "<group>"; };
+		62127B412B43FD0C008D2656 /* AddSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSheetView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,7 +60,11 @@
 			isa = PBXGroup;
 			children = (
 				62127B262B43E9AC008D2656 /* SparkFlowApp.swift */,
-				62127B282B43E9AC008D2656 /* ContentView.swift */,
+				62127B352B43E9EB008D2656 /* ListView.swift */,
+				62127B372B43EAD0008D2656 /* ListRowView.swift */,
+				62127B392B43EDCE008D2656 /* ListData.swift */,
+				62127B3B2B43F048008D2656 /* ListData.xcdatamodeld */,
+				62127B412B43FD0C008D2656 /* AddSheetView.swift */,
 				62127B2A2B43E9AC008D2656 /* Assets.xcassets */,
 				62127B2C2B43E9AC008D2656 /* Preview Content */,
 			);
@@ -137,8 +149,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				62127B292B43E9AC008D2656 /* ContentView.swift in Sources */,
+				62127B422B43FD0C008D2656 /* AddSheetView.swift in Sources */,
 				62127B272B43E9AC008D2656 /* SparkFlowApp.swift in Sources */,
+				62127B362B43E9EB008D2656 /* ListView.swift in Sources */,
+				62127B382B43EAD0008D2656 /* ListRowView.swift in Sources */,
+				62127B3A2B43EDCE008D2656 /* ListData.swift in Sources */,
+				62127B3D2B43F048008D2656 /* ListData.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -275,6 +291,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -304,6 +321,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -339,6 +357,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		62127B3B2B43F048008D2656 /* ListData.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				62127B3C2B43F048008D2656 /* ListData.xcdatamodel */,
+			);
+			currentVersion = 62127B3C2B43F048008D2656 /* ListData.xcdatamodel */;
+			path = ListData.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 62127B1B2B43E9AC008D2656 /* Project object */;
 }

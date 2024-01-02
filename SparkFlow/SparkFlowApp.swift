@@ -9,9 +9,16 @@ import SwiftUI
 
 @main
 struct SparkFlowApp: App {
+    
+    //1、创建CoreData的实例
+    let ListDataManager = ListData.shared
+    
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ListView()
+            //2、将实例放入该视图环境
+            .environment(\.managedObjectContext, ListDataManager.container.viewContext)
         }
     }
 }
