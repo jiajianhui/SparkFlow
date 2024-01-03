@@ -6,11 +6,14 @@
 //
 
 import SwiftUI
+import PhotosUI
 
 struct AddSheetView: View {
     
     @State var titleValue = ""
     @State var contentValue = ""
+    
+    @StateObject var imageData = ImageData()
     
     @Environment(\.dismiss) var dismiss
     
@@ -23,28 +26,43 @@ struct AddSheetView: View {
                 VStack(spacing: 16) {
                     VStack(alignment: .leading, spacing: 8) {
                         Text("主题名称")
-                            .font(.system(size: 14))
-                            .foregroundColor(.gray)
-                            .padding(.horizontal, 8)
+                            .modifier(SmallTitleStyle())
                         TextField("请输入主题", text: $titleValue)
-                            .padding()
-                            .background {
-                                Color.white.cornerRadius(16)
-                            }
+                            .modifier(TextFieldStyle())
                     }
                     
                     VStack(alignment: .leading, spacing: 8) {
                         Text("主题详情")
-                            .font(.system(size: 14))
-                            .foregroundColor(.gray)
-                            .padding(.horizontal, 8)
+                            .modifier(SmallTitleStyle())
                         TextEditor(text: $contentValue)
-                            .scrollContentBackground(.hidden)
-                            .frame(minHeight: 600)
-                            .padding()
-                            .background (
-                                Color.white.cornerRadius(16)
-                            )
+                            .modifier(TextEditorStyle())
+                    }
+                    
+                    VStack(alignment: .leading, spacing: 8) {
+                        Text("添加图片")
+                            .modifier(SmallTitleStyle())
+                        
+                        HStack {
+                            PhotosPicker(selection: $imageData.selectedImage, matching: .images) {
+                                switch imageData.imageState {
+                                case .success(let image):
+                                    image
+                                        .resizable()
+                                        .scaledToFill()
+                                        .frame(width: 100, height: 100)
+                                        .cornerRadius(16)
+                                case .loading:
+                                    ProgressView()
+                                case .empty:
+                                    Image(systemName: "plus")
+                                        .modifier(AddImageStyle())
+                                case .failure:
+                                    Image(systemName: "")
+                                    
+                                }
+                            }
+                        }
+                        .frame(maxWidth: .infinity, alignment: .leading)
                     }
                 }
                 .padding(.horizontal)
@@ -84,13 +102,55 @@ struct AddSheetView: View {
         new.timeStamp = Date()
         new.collected = false
         
+        
         try? viewContext.save()
     }
-    
 }
 
 struct AddSheetView_Previews: PreviewProvider {
     static var previews: some View {
         AddSheetView()
+    }
+}
+
+//MARK: - 样式组件
+//将样式组件化
+struct SmallTitleStyle: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .font(.system(size: 14))
+            .foregroundColor(.gray)
+            .padding(.horizontal, 8)
+    }
+}
+
+struct AddImageStyle: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .font(.system(size: 28, weight: .medium))
+            .foregroundColor(Color(uiColor: .systemGray3))
+            .frame(width: 100, height: 100)
+            .background(Color.white.cornerRadius(16))
+    }
+}
+
+struct TextFieldStyle: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .padding()
+            .background {
+                Color.white.cornerRadius(16)
+            }
+    }
+}
+struct TextEditorStyle: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .scrollContentBackground(.hidden)
+            .frame(minHeight: 300)
+            .padding()
+            .background (
+                Color.white.cornerRadius(16)
+            )
     }
 }

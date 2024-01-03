@@ -15,6 +15,7 @@
 		62127B3A2B43EDCE008D2656 /* ListData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62127B392B43EDCE008D2656 /* ListData.swift */; };
 		62127B3D2B43F048008D2656 /* ListData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 62127B3B2B43F048008D2656 /* ListData.xcdatamodeld */; };
 		62127B422B43FD0C008D2656 /* AddSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62127B412B43FD0C008D2656 /* AddSheetView.swift */; };
+		62127B442B4553C0008D2656 /* ImageData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62127B432B4553C0008D2656 /* ImageData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,7 @@
 		62127B392B43EDCE008D2656 /* ListData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListData.swift; sourceTree = "<group>"; };
 		62127B3C2B43F048008D2656 /* ListData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ListData.xcdatamodel; sourceTree = "<group>"; };
 		62127B412B43FD0C008D2656 /* AddSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSheetView.swift; sourceTree = "<group>"; };
+		62127B432B4553C0008D2656 /* ImageData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 				62127B352B43E9EB008D2656 /* ListView.swift */,
 				62127B372B43EAD0008D2656 /* ListRowView.swift */,
 				62127B392B43EDCE008D2656 /* ListData.swift */,
+				62127B432B4553C0008D2656 /* ImageData.swift */,
 				62127B3B2B43F048008D2656 /* ListData.xcdatamodeld */,
 				62127B412B43FD0C008D2656 /* AddSheetView.swift */,
 				62127B2A2B43E9AC008D2656 /* Assets.xcassets */,
@@ -155,6 +158,7 @@
 				62127B382B43EAD0008D2656 /* ListRowView.swift in Sources */,
 				62127B3A2B43EDCE008D2656 /* ListData.swift in Sources */,
 				62127B3D2B43F048008D2656 /* ListData.xcdatamodeld in Sources */,
+				62127B442B4553C0008D2656 /* ImageData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
