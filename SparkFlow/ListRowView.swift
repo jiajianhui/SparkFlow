@@ -17,8 +17,8 @@ struct ListRowView: View {
     
     
     var body: some View {
-        HStack {
-            VStack(alignment: .leading, spacing: 8) {
+        VStack(alignment: .leading, spacing: 4) {
+            HStack(alignment: .center) {
                 VStack(alignment: .leading, spacing: 4) {
                     Text(title)
                         .font(.title)
@@ -26,27 +26,27 @@ struct ListRowView: View {
                     Text(content)
                         .font(.system(size: 14))
                 }
+                .lineLimit(1)
                 
-                HStack(spacing: 6) {
-                    Image(systemName: "calendar")
-                    Text(timeStamp)
-                    
-                    Spacer()
-                    Image(systemName: "star.fill")
-                        .foregroundColor(.orange)
-                        .opacity(collected ? 1 : 0)
-                }
-                .font(.system(size: 12))
-                .foregroundColor(.gray)
-                
+                Spacer()
+                RoundedRectangle(cornerRadius: 12)
+                    .frame(width: 60, height: 60)
             }
-            .lineLimit(1)
             
-            Spacer()
-            RoundedRectangle(cornerRadius: 12)
-                .frame(width: 70, height: 70)
+            HStack(spacing: 6) {
+                Image(systemName: "calendar")
+                Text(timeStamp)
+                
+                Spacer()
+                Image(systemName: "star.fill")
+                    .foregroundColor(.orange)
+                    .opacity(collected ? 1 : 0)
+            }
+            .font(.system(size: 12))
+            .foregroundColor(.gray)
+            
         }
-        .padding(4)
+        .padding(2)
         .frame(maxWidth: .infinity, alignment: .leading)
     }
 }

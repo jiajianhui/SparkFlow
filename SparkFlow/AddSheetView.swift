@@ -87,9 +87,6 @@ struct AddSheetView: View {
         try? viewContext.save()
     }
     
-    
-    
-    
 }
 
 struct AddSheetView_Previews: PreviewProvider {
