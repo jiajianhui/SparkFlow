@@ -43,23 +43,15 @@ struct AddSheetView: View {
                             .modifier(SmallTitleStyle())
                         
                         HStack {
-                            PhotosPicker(selection: $imageData.selectedImage, matching: .images) {
-                                switch imageData.imageState {
-                                case .success(let image):
-                                    image
-                                        .resizable()
-                                        .scaledToFill()
-                                        .frame(width: 100, height: 100)
-                                        .cornerRadius(16)
-                                case .loading:
-                                    ProgressView()
-                                case .empty:
-                                    Image(systemName: "plus")
-                                        .modifier(AddImageStyle())
-                                case .failure:
-                                    Image(systemName: "")
-                                    
-                                }
+                            if let uiImage = imageData.selectedImage { //解包可选类型
+                                Image(uiImage: uiImage)
+                                    .resizable()
+                                    .modifier(AddImageStyle())
+                            }
+                            
+                            PhotosPicker(selection: $imageData.imageSelection, matching: .images) {
+                                Image(systemName: "plus")
+                                    .modifier(AddImageStyle())
                             }
                         }
                         .frame(maxWidth: .infinity, alignment: .leading)
@@ -102,6 +94,7 @@ struct AddSheetView: View {
         new.timeStamp = Date()
         new.collected = false
         
+        new.image = imageData.selectedImage?.pngData()
         
         try? viewContext.save()
     }
@@ -130,7 +123,8 @@ struct AddImageStyle: ViewModifier {
             .font(.system(size: 28, weight: .medium))
             .foregroundColor(Color(uiColor: .systemGray3))
             .frame(width: 100, height: 100)
-            .background(Color.white.cornerRadius(16))
+            .background(Color.white)
+            .cornerRadius(16)
     }
 }
 

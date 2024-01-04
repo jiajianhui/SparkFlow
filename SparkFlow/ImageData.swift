@@ -12,66 +12,37 @@ import PhotosUI
 
 class ImageData: ObservableObject {
     
-    //定义图片状态
-    enum ImageState {
-        case empty
-        case loading(Progress)
-        case success(Image)
-        case failure(Error)
-    }
-    
-    enum TransferError: Error {
-        case impotFailed
-    }
-    
-    //创建 SelectedImage 模型，处理图片 DataRepresentation 的数据，将其转换为 UIImage 或 NSImage
-    struct SelectedImage: Transferable {
-        let image: Image
-        
-        static var transferRepresentation: some TransferRepresentation {
-            DataRepresentation(importedContentType: .image) { data in
-                guard let uiImage = UIImage(data: data) else {
-                    throw TransferError.impotFailed
-                }
-                
-                let image = Image(uiImage: uiImage) //接收将上面得到的信息
-                return SelectedImage(image: image)  //将转换后的数据return出去
-            }
-        }
-    }
     
     //对外发布数据
-    @Published private(set) var imageState: ImageState = .empty
+    @Published var selectedImage: UIImage? = nil
     
-    
-    @Published var selectedImage: PhotosPickerItem? = nil {
+    @Published var imageSelection: PhotosPickerItem? = nil {
         didSet {
-            if let selectedImage {
-                let progress = loadTransferable(form: selectedImage)
-                imageState = .loading(progress)
-            } else {
-                imageState = .empty
-            }
+            setImage(from: imageSelection)
         }
     }
     
-    //函数
-    func loadTransferable(form photoPickerItem: PhotosPickerItem) -> Progress {
-        return photoPickerItem.loadTransferable(type: SelectedImage.self) { result in
-            DispatchQueue.main.async {
-                guard photoPickerItem == self.selectedImage else {
-                    print("图片加载失败")
-                    return
+    private func setImage(from selection: PhotosPickerItem?) {
+        guard let selection else { return }
+        
+        Task {
+            do {
+                //1、将选择的图片转换为二进制数据
+                let data = try await selection.loadTransferable(type: Data.self)
+                
+                //2、将二进制数据转为UIImage数据
+                guard let data,
+                      let uiImage = UIImage(data: data) else {
+                    throw URLError(.badServerResponse)
                 }
                 
-                switch result {
-                    case .success(let selectedImage?):
-                        self.imageState = .success(selectedImage.image)
-                    case .success(nil):
-                        self.imageState = .empty
-                    case .failure(let error):
-                        self.imageState = .failure(error)
+                DispatchQueue.main.async {
+                    //3、将数据赋值
+                    self.selectedImage = uiImage
                 }
+                
+            } catch {
+                print(error)
             }
         }
     }

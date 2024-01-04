@@ -13,6 +13,7 @@ struct ListRowView: View {
     var content: String
     var timeStamp: String
     var collected: Bool
+    var uiImage: UIImage?
     
     
     
@@ -21,7 +22,7 @@ struct ListRowView: View {
             HStack(alignment: .center) {
                 VStack(alignment: .leading, spacing: 4) {
                     Text(title)
-                        .font(.title)
+                        .font(.title2)
                         .fontWeight(.bold)
                     Text(content)
                         .font(.system(size: 14))
@@ -29,11 +30,16 @@ struct ListRowView: View {
                 .lineLimit(1)
                 
                 Spacer()
-                RoundedRectangle(cornerRadius: 12)
-                    .frame(width: 60, height: 60)
+                if let uiImage = uiImage {
+                    Image(uiImage: uiImage)
+                        .resizable()
+                        .frame(width: 60, height: 60)
+                        .cornerRadius(10)
+                }
             }
             
-            HStack(spacing: 6) {
+            //日期及收藏
+            HStack(spacing: 4) {
                 Image(systemName: "calendar")
                 Text(timeStamp)
                 

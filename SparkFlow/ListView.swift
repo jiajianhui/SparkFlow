@@ -30,11 +30,16 @@ struct ListView: View {
         NavigationView {
             List {
                 ForEach(lists) { item in
+                    //解包可选数据类型
+                    let uiImage: UIImage? = item.image != nil ? UIImage(data: item.image!) : nil
+
                     ListRowView(title: item.title ?? "",
                                 content: item.content ?? "",
                                 timeStamp: displayDate(item.timeStamp!),
-                                collected: item.collected
+                                collected: item.collected,
+                                uiImage: uiImage
                     )
+                    
                     .swipeActions {
                         Button(role: .destructive) {
                             viewContext.delete(item)
@@ -85,7 +90,7 @@ struct ListView: View {
         let formatter = DateFormatter()
         
         formatter.locale = Locale(identifier: "zh_Hans")
-        formatter.setLocalizedDateFormatFromTemplate("MMMMdd")
+        formatter.setLocalizedDateFormatFromTemplate("YYYYMMMMdd")
         
         return formatter
     }()
